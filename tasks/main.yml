@@ -1,0 +1,6 @@
+---
+# tasks file for ansible-role-laniakea-cert-fix
+
+- include: nginx.yml
+
+#- include: cert.yml

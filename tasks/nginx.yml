@@ -1,0 +1,68 @@
+---
+# NGINX installation and configuration recipe
+
+#______________________________________
+# CentOS 7
+
+- name: Stop NGINX server for updateing it
+  service:
+    name: 'nginx'
+    state: stopped
+    enabled: no
+  ignore_errors: yes
+
+- name: Backup nginx configuration dir
+  copy:
+    src: '/etc/nginx'
+    dest: '/export/nginx_bck'
+
+- name: '[EL] Remove  NGINX Galaxy repository'
+  yum_repository:
+    name: galaxy
+    state: absent
+  when: ansible_os_family == "RedHat"
+
+- name: '[EL] Uninstall NGINX'
+  yum:
+    name: '{{ packages }}'
+    state: absent
+  vars:
+    packages:
+    - nginx-galaxy
+    - nginx-galaxy-filesystem
+  when: ansible_os_family == "RedHat"
+
+#______________________________________
+# Install NGINX 1.21.0 from official repo
+
+- name: '[EL] Add NGINX official repository'
+  copy:
+    src: 'nginx.repo'
+    dest: '/etc/yum.repos.d/'
+
+- name: '[EL] Install nginx 1.20.1'
+  package:
+    name: nginx-1.20.1-1.el7.ngx
+    state: present
+
+- name: '[EL] Retrieve the upload module'
+  get_url:
+    url: '{{ nginx_upload_package_url }}'
+    dest: '/tmp/{{ nginx_upload_package }}'
+
+- name: '[EL] Install the upload module'
+  command: 'rpm -i /tmp/{{ nginx_upload_package }}'
+
+#______________________________________
+# NGINX configuration
+
+# /etc/nginx/nginx.conf configuration
+
+#- name: Include NGINX specific variables.
+#  include_vars: nginx_vars.yml
+
+#- name: Copy the NGINX configuration file
+#  template:
+#    src: 'nginx_galaxy.conf.j2'
+#    dest: '/etc/nginx/conf.d/galaxy'
+
