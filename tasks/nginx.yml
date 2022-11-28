@@ -51,7 +51,10 @@
     dest: '/tmp/{{ nginx_upload_package }}'
 
 - name: '[EL] Install the upload module'
-  command: 'rpm -i /tmp/{{ nginx_upload_package }}'
+  yum: 
+    name: '/tmp/{{ nginx_upload_package }}'
+    state: present
+  when: ansible_os_family == "RedHat"
 
 #______________________________________
 # NGINX configuration

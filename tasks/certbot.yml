@@ -1,0 +1,53 @@
+---
+
+- name: Copy build_dns_record script
+  copy:
+    src: 'build_dns_record.py'
+    dest: '/tmp/'
+
+- name: Build dns record
+  command: '{{ galaxy_venv_path }}/bin/python
+            /tmp/build_dns_record.py
+            -i "{{ ansible_default_ipv4.address }}"
+            -p "{{ dns_record_prefix }}"
+            -s "{{ dns_record_suffix }}"
+            -d "{{ dns_record_dot_replacement }}"'
+  register: vm_dns_record
+
+- debug:
+    msg: '{{ vm_dns_record.stdout }}'
+
+# install certbot with pip in virtualenv with py3
+- name: '[EL] Install Python3 for certbot'
+  yum:
+    name: '{{ packages }}'
+    state: present
+  vars:
+    packages:
+    - python-devel
+    - python3
+    - python36-virtualenv
+  when: ansible_os_family == "RedHat"
+
+- name: Install certbot
+  pip:
+    name:
+      - certbot
+      - certbot-nginx
+    virtualenv: "{{ certbot_venv_path }}"
+    virtualenv_command: "{{ py3_virtualenv_command | default( 'virtualenv' ) }}"
+  become_user: '{{ galaxy_user }}'
+  become: true
+
+# Create and install certificates
+- name: Create certificate
+  shell: "{{ certbot_venv_path }}/bin/certbot certonly --standalone -n --agree-tos --email {{ admin_email }} -d {{ vm_dns_record.stdout }}"
+  args:
+    creates: '/etc/letsencrypt/live/{{ vm_dns_record.stdout }}'
+
+- name: Setup cronjob for renewal
+  cron:
+    name: certbot-renewal
+    job: '{{ certbot_venv_path }}/bin/certbot renew --quiet'
+    minute: "0"
+    hour: "0"

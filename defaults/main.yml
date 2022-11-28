@@ -1,13 +1,18 @@
 ---
 # defaults file for ansible-role-laniakea-cert-fix
 
+galaxy_user: 'galaxy'
 galaxy_venv_path: /home/galaxy/galaxy/.venv
+admin_email: ma.tangaro@gmail.com
 
 dns_record_prefix: "cloud-" 
 dns_record_suffix: ".cloud.ba.infn.it" 
 dns_record_dot_replacement: "-"
 
 # Nginx upload module package
-
 nginx_upload_package: 'nginx-module-upload-1.20.1+1.0-1.el7.ngx.x86_64.rpm'
 nginx_upload_package_url: 'https://github.com/mtangaro/nginx-upload-module-build/blob/main/nginx_v1.20.1/build-module-artifacts/{{ nginx_upload_package }}?raw=true'
+
+# Cerbot
+certbot_venv_path: '/home/galaxy/certbot_venv'
+py3_virtualenv_command: '/bin/python3 -m virtualenv'
