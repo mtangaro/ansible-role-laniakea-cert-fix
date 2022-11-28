@@ -61,11 +61,17 @@
 
 # /etc/nginx/nginx.conf configuration
 
-#- name: Include NGINX specific variables.
-#  include_vars: nginx_vars.yml
+- name: Include NGINX specific variables.
+  include_vars: nginx_vars.yml
 
-#- name: Copy the NGINX configuration file
-#  template:
-#    src: 'nginx_galaxy.conf.j2'
-#    dest: '/etc/nginx/conf.d/galaxy'
+- name: Copy the NGINX configuration file
+  template:
+    src: 'nginx.conf.j2'
+    dest: '/etc/nginx/nginx.conf'
+  notify: restart nginx
 
+- name: Copy the NGINX configuration file
+  template:
+    src: 'nginx_galaxy.conf.j2'
+    dest: '/etc/nginx/conf.d/galaxy.conf'
+  notify: restart nginx
