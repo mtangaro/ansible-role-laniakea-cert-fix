@@ -4,7 +4,7 @@
 galaxy_user: 'galaxy'
 galaxy_install_path: /home/galaxy/galaxy
 galaxy_venv_path: /home/galaxy/galaxy/.venv
-admin_email: ma.tangaro@gmail.com
+admin_email: admin@example.com
 
 export_dir: /export
 galaxy_db_dir: "{{export_dir}}/galaxy/database"
