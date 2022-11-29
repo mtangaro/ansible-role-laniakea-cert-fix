@@ -75,3 +75,20 @@
     src: 'nginx_galaxy.conf.j2'
     dest: '/etc/nginx/conf.d/galaxy.conf'
   notify: restart nginx
+
+- name: Check if nginx default configuration exists
+  stat:
+    path: /etc/nginx/conf.d/default.conf
+  register: nginx_default_conf_file
+
+- name: Backup nginx default configuration
+  copy:
+    src: /etc/nginx/conf.d/default.conf
+    dest: /etc/nginx/conf.d/default.conf.off
+  when: nginx_default_conf_file.stat.exists
+
+- name: 'Remove 80 port configuration, freeing it for certbot'
+  file:
+    path: /etc/nginx/conf.d/default.conf
+    state: absent
+
