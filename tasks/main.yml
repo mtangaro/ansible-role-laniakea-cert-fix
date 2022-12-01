@@ -1,6 +1,9 @@
 ---
 # tasks file for ansible-role-laniakea-cert-fix
 
+- debug:
+    msg: '{{ admin_email }}'
+
 - include: certbot.yml
 
 - include: nginx.yml
