@@ -1,5 +1,11 @@
 ---
-
+- name: Stop NGINX server to run certbot on port 80
+  service:
+    name: 'nginx'
+    state: stopped
+    enabled: no
+  ignore_errors: yes
+  
 - name: Copy build_dns_record script
   copy:
     src: 'build_dns_record.py'
@@ -19,15 +25,19 @@
 
 # install certbot with pip in virtualenv with py3
 - name: '[EL] Install Python3 for certbot'
-  yum:
-    name: '{{ packages }}'
-    state: present
-  vars:
-    packages:
-    - python-devel
-    - python3
-    - python36-virtualenv
+  command: 'yum install -y python-devel python3 python36-virtualenv'
   when: ansible_os_family == "RedHat"
+  
+#- name: '[EL] Install Python3 for certbot'
+#  yum:
+#    name: '{{ packages }}'
+#    state: present
+#  vars:
+#    packages:
+#    - python-devel
+#    - python3
+#    - python36-virtualenv
+#  when: ansible_os_family == "RedHat"
 
 - name: Install certbot
   pip:
