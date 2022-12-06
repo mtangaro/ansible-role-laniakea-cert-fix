@@ -4,7 +4,7 @@
 #______________________________________
 # CentOS 7
 
-- name: Stop NGINX server for updateing it
+- name: Stop NGINX server for updating it
   service:
     name: 'nginx'
     state: stopped
