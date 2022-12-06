@@ -59,7 +59,7 @@ http {
     # OCSP stapling
     ssl_stapling on;
     ssl_stapling_verify on;
-    #ssl_trusted_certificate /etc/nginx/ssl/ca.crt;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ vm_dns_record.stdout }}/fullchain.pem;
 {% endif %}
 
     client_body_temp_path /tmp 1 2;
