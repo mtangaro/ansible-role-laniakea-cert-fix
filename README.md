@@ -76,14 +76,33 @@ ansible-playbook ansible-role-laniakea-cert-fix/playbook.yml -e "admin_email=YOU
 
 The script will configure the machine for you. An example of output is available [here](https://github.com/mtangaro/ansible-role-laniakea-cert-fix/blob/main/fix.log).
 
+The script will print also the new address where the Galaxy instance is availabl=
 
+```
+TASK [ansible-role-laniakea-cert-fix : debug] *****************************************************
+ok: [localhost] => {
+    "msg": "Your Galaxy is now available at: https://cloud-212-189-205-161.cloud.ba.infn.it/galaxy"
+}
+```
 
+where the old IP address is substitued with a URL obtained replacing the IP address dots, with the dash symbol "-".
 
+For example if Galaxy was available at http//:212.189.205.161/galaxy, now will be available at https://cloud-212-189-205-161.cloud.ba.infn.it/galaxy.
 
+Further details
+---------------
 
+This fix has been implemented as an Ansible role which is responsible of creating, installing a Let's Encrypt certificate and re-configure NGINX for you.
 
+To do this the Certbot is installed in a python3 virtual environment located in your own galaxy home directory ``home/galaxy/certbot_venv``. The last version of certbot is used.
 
+Then a Let's Encrypt SSL certificate is created exploitig the DNS record associated to each virtual machine on ReCaS Cloud facility.
 
+Finally, a daily cron job is scheduled to manage and automate the certificate updates.
+
+Also NGINX needs to be re-configured to support TLSV1.2 and TLSv1.3. The 1.20.1 version is used, with the upload module of galaxy dinamically built and installed.
+
+TLSv1.3 is not enabled, since OpenSSL supports it starting from the 1.1.1 version, while CentOS 7 supports only OpenSSL up to 1.0.2 version.
 
 Ansible Role details
 ====================
