@@ -38,7 +38,7 @@ To run this fix you need:
 
 1. a valid email address, needed to register your certificate
 
-2. a Galaxy instance created with Laniakea, without any changes to NGINX configuration
+2. a Galaxy instance created with Laniakea, **without any changes to NGINX configuration**
 
 3. Your SSH private key to login the VM.
 
