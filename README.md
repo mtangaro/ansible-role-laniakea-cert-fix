@@ -1,5 +1,63 @@
-Laniakea role for NGINX ssl cert fix
+Laniakea fix for SSL certificate  requirement
 =========
+
+This is a brief users tutorial to fix Laniakea@ReCaS SSL certificate issue.
+
+If you received a mail like this
+
+```
+Gentile utente,
+ci è pervenuta dal GARR la segnalazione per le criticità sotto riportate relative alla sua istanza con 
+Ip: <<YOUR VM IP ADDRESS>>  nel tenant elixir-italy-services. La deadline per la risoluzione per la risoluzione delle suddette è fissata per il giorno *****. Di seguito troverà tutti i dettagli. La preghiamo di darci feedback al più presto.
+Cordialmente 
+```
+
+Please contact us at Laniakea@ReCaS support e-mail: mailto:laniakea.helpdesk@gmail.com
+
+Introduction
+------------
+
+Due to a change of polity of Laniakea@ReCaS cloud provider, Galaxy needs to run under SSL certificate on port 443, enabling only TLSv1.2 and TLSv1.3.
+
+This fix will do this for you. In particular:
+
+1. Install Certbot to create
+
+2. Install a Let's encrypt certificate
+
+3. Update Nginx at 1.20.1 version
+
+4. Re-configure NGINX and restart it.
+
+The certificate will be automatically updated every three months.
+
+Requirements
+------------
+
+To run this fix you need:
+
+1. a valid email address, needed to register your certificate
+
+2. a Galaxy instance created with Laniakea, without any changes to NGINX configuration
+
+3. Your SSH private key to login the VM.
+
+Get your SSH private key on Laniakea
+------------------------------------
+
+Run the fix
+-----------
+
+
+
+
+
+
+
+
+
+Ansible Role details
+====================
 
 Install certbot, install a Let's Encrypt certificate, update NGINX and configure it for supporting TLSv1.2 and TLSv1.3 only.
 
@@ -41,23 +99,3 @@ License
 -------
 
 MIT
-
-Users tutorial
-===============
-
-Introduction
-------------
-
-Due to a change of polity of Laniakea@ReCaS cloud provider, Galaxy needs to run under SSL certificate on port 443, enabling only TLSv1.2 and TLSv1.3.
-
-This fix will do this for you. In particular:
-
-1. Install Certbot to create  
-
-
-
-
-
-
-
-
