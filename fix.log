@@ -6,10 +6,16 @@
 
 PLAY [localhost] ***************************************************************
 
+TASK [ansible-role-laniakea-cert-fix : stat] ***********************************
+ok: [localhost]
+
 TASK [ansible-role-laniakea-cert-fix : debug] **********************************
 ok: [localhost] => {
     "msg": "ma.tangaro@gmail.com"
 }
+
+TASK [ansible-role-laniakea-cert-fix : Stop NGINX server to run certbot on port 80] ***
+changed: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Copy build_dns_record script] ***********
 ok: [localhost]
@@ -19,65 +25,74 @@ changed: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : debug] **********************************
 ok: [localhost] => {
-    "msg": "cloud-212-189-205-135.cloud.ba.infn.it"
+    "msg": "cloud-90-147-75-113.cloud.ba.infn.it"
 }
 
 TASK [ansible-role-laniakea-cert-fix : [EL] Install Python3 for certbot] *******
-ok: [localhost]
+changed: [localhost]
+ [WARNING]: Consider using yum module rather than running yum
 
 TASK [ansible-role-laniakea-cert-fix : Install certbot] ************************
-changed: [localhost]
+ok: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Create certificate] *********************
-changed: [localhost]
+ok: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Setup cronjob for renewal] **************
-changed: [localhost]
+ok: [localhost]
 
-TASK [ansible-role-laniakea-cert-fix : Stop NGINX server for updateing it] *****
-changed: [localhost]
+TASK [ansible-role-laniakea-cert-fix : Stop NGINX server for updating it] ******
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Backup nginx configuration dir] *********
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : [EL] Remove  NGINX Galaxy repository] ***
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : [EL] Uninstall NGINX] *******************
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : [EL] Add NGINX official repository] *****
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : [EL] Install nginx 1.20.1] **************
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : [EL] Retrieve the upload module] ********
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : [EL] Install the upload module] *********
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Include NGINX specific variables.] ******
-ok: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Copy the NGINX configuration file] ******
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Copy the NGINX configuration file] ******
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Check if nginx default configuration exists] ***
-ok: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Backup nginx default configuration] *****
-changed: [localhost]
+skipping: [localhost]
 
 TASK [ansible-role-laniakea-cert-fix : Remove 80 port configuration, freeing it for certbot] ***
+skipping: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : restart nginx if nothing has been done] *
 changed: [localhost]
 
-RUNNING HANDLER [ansible-role-laniakea-cert-fix : restart nginx] ***************
-changed: [localhost]
+TASK [ansible-role-laniakea-cert-fix : Fix laniakeautils check instance script] 
+ok: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : debug] **********************************
+ok: [localhost] => {
+    "msg": "Your Galaxy is now available at: https://cloud-90-147-75-113.cloud.ba.infn.it/galaxy"
+}
 
 PLAY RECAP *********************************************************************
-localhost                  : ok=23   changed=17   unreachable=0    failed=0  
+localhost                  : ok=13   changed=4    unreachable=0    failed=0   
