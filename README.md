@@ -115,6 +115,8 @@ where the old IP address is substitued with a URL obtained replacing the IP addr
 
 For example if Galaxy was available at http//:212.189.205.161/galaxy, now will be available at https://cloud-212-189-205-161.cloud.ba.infn.it/galaxy.
 
+Finally, this procedure has been tested on brand new VMs, if you find any issue, please report to our [support e-mail](mailto:laniakea.helpdesk@gmail.com)
+
 Further details
 ---------------
 
