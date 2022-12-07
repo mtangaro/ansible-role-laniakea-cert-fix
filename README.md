@@ -78,7 +78,7 @@ Run the fix
 ssh -i your_private_key galaxy@IP_ADDRESS
 ```
 
-ore use putty on Windows.
+or use Putty on Windows.
 
 2. Become super user:
 
@@ -98,9 +98,11 @@ git clone https://github.com/mtangaro/ansible-role-laniakea-cert-fix.git
 ansible-playbook ansible-role-laniakea-cert-fix/playbook.yml -e "admin_email=YOUR_EMAIL"
 ```
 
+**where you need to change <YOUR_EMAIL> field with a valid email address**.
+
 The script will configure the machine for you. An example of output is available [here](https://github.com/mtangaro/ansible-role-laniakea-cert-fix/blob/main/fix.log).
 
-The script will print also the new address where the Galaxy instance is availabl=
+The script will print also the new address where the Galaxy instance is available:
 
 ```
 TASK [ansible-role-laniakea-cert-fix : debug] *****************************************************
