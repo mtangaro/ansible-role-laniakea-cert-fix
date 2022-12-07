@@ -40,10 +40,20 @@ To run this fix you need:
 
 2. a Galaxy instance created with Laniakea, **without any changes to NGINX configuration**
 
-3. Your SSH private key to login the VM.
+3. Your SSH private key, **used during the VM creation**, to login the VM.
 
 Get your SSH private key on Laniakea
 ------------------------------------
+
+If you used the Laniakea Dashborad to create the SSH key for your Galaxy instance, you can use the same interface to retrieve it.
+
+1. Log in to [Laniakea@ReCaS](https://laniakea-dashboard.cloud.ba.infn.it/)
+
+2. Open the ``SSH keys section``
+
+3. Retrieve the **SSH private key**
+
+![ssh_fig2](https://github.com/mtangaro/ansible-role-laniakea-cert-fix/blob/main/ssh_fig2.png)
 
 Run the fix
 -----------
