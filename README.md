@@ -1,43 +1,43 @@
 Laniakea role for NGINX ssl cert fix
 =========
 
-A brief description of the role goes here.
+Install certbot, install a Let's Encrypt certificate, update NGINX and configure it for supporting TLSv1.2 and TLSv1.3 only.
+
+The configuration for NGINX is available here: https://ssl-config.mozilla.org/ 
+
+This tool has been used for testing: https://github.com/drwetter/testssl.sh/tree/3.0 
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Python3 and pyhton3-virtualenv are needed to create the certbot virtualenv and install it. These dependencieas are automatically solved by the role.
+
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+``admin_email``: set user email for certbot certificate creation (default: admin@example.com).
 
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Playbook example:
 
+```yaml
+    ---
     - hosts: localhost
       connection: local
       roles:
          - ansible-role-laniakea-cert-fix
+```
+
+Run the role with the following command:
 
 ```
-ansible-playbook ansible-role-laniakea-cert-fix/playbook.yml -e "admin_email=ma.tangaro@gmail.com"
+ansible-playbook ansible-role-laniakea-cert-fix/playbook.yml -e "admin_email=your_email@server.com"
 ```
 
 License
 -------
 
-BSD
+MIT
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
