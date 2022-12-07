@@ -5,7 +5,6 @@
     path: '{{ nginx_backup_path }}/nginx/nginx.conf'
   register: nginx_backup
 
-
 - debug:
     msg: '{{ admin_email }}'
 
@@ -13,6 +12,18 @@
 
 - include: nginx.yml
   when: not nginx_backup.stat.exists
+
+- name: restart nginx if nothing has been done
+  service:
+    name: nginx
+    state: restarted
+  when: nginx_backup.stat.exists
+
+- name: Fix laniakeautils check instance script
+  replace:
+    dest: '/home/galaxy/.laniakea_utils/check_instance'
+    regexp: "URL='http://{{ ansible_default_ipv4.address }}/galaxy/'"
+    replace: "URL='https://{{ vm_dns_record.stdout }}/galaxy/'"
 
 - debug:
     msg: 'Your Galaxy is now available at: https://{{ vm_dns_record.stdout }}/galaxy'
