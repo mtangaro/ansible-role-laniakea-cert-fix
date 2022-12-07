@@ -14,7 +14,7 @@
 - name: Backup nginx configuration dir
   copy:
     src: '/etc/nginx'
-    dest: 'nginx_backup_path'
+    dest: '{{ nginx_backup_path }}'
 
 - name: '[EL] Remove  NGINX Galaxy repository'
   yum_repository:
