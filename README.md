@@ -18,6 +18,7 @@ Role Variables
 
 ``admin_email``: set user email for certbot certificate creation (default: admin@example.com).
 
+Example Playbook
 ----------------
 
 Playbook example:
@@ -40,4 +41,23 @@ License
 -------
 
 MIT
+
+Users tutorial
+===============
+
+Introduction
+------------
+
+Due to a change of polity of Laniakea@ReCaS cloud provider, Galaxy needs to run under SSL certificate on port 443, enabling only TLSv1.2 and TLSv1.3.
+
+This fix will do this for you. In particular:
+
+1. Install Certbot to create  
+
+
+
+
+
+
+
 
