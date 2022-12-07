@@ -2,7 +2,7 @@
 # tasks file for ansible-role-laniakea-cert-fix
 
 - stat:
-    path: '{{ nginx_backup_path }}/nginx.conf'
+    path: '{{ nginx_backup_path }}/nginx/nginx.conf'
   register: nginx_backup
 
 
