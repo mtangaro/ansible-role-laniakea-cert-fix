@@ -1,12 +1,18 @@
 ---
 # tasks file for ansible-role-laniakea-cert-fix
 
+- stat:
+    path: '{{ nginx_backup_path }}/nginx.conf'
+  register: nginx_backup
+
+
 - debug:
     msg: '{{ admin_email }}'
 
 - include: certbot.yml
 
 - include: nginx.yml
+  when: not nginx_backup.stat.exists
 
 - debug:
     msg: 'Your Galaxy is now available at: https://{{ vm_dns_record.stdout }}/galaxy'

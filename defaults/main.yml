@@ -16,6 +16,7 @@ dns_record_dot_replacement: "-"
 
 # Nginx config
 nginx_https: true
+nginx_backup_path: '/export/nginx_bck'
 
 # Nginx upload module package
 nginx_upload_package: 'nginx-module-upload-1.20.1+1.0-1.el7.ngx.x86_64.rpm'
