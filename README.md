@@ -21,7 +21,7 @@ Due to a change of polity of Laniakea@ReCaS cloud provider, Galaxy needs to run 
 
 This fix will do this for you. In particular:
 
-1. Install Certbot to create
+1. Install Certbot
 
 2. Install a Let's encrypt certificate
 
