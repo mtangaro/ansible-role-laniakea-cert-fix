@@ -12,7 +12,7 @@ Ip: <<YOUR VM IP ADDRESS>>  nel tenant elixir-italy-services. La deadline per la
 Cordialmente 
 ```
 
-Please contact us at Laniakea@ReCaS support e-mail: mailto:laniakea.helpdesk@gmail.com
+Please contact us at Laniakea@ReCaS [support e-mail](mailto:laniakea.helpdesk@gmail.com)
 
 Introduction
 ------------
@@ -47,6 +47,36 @@ Get your SSH private key on Laniakea
 
 Run the fix
 -----------
+
+1. Log in the Galaxy Virtual Instance with the following command (on Linux or MacOS systems):
+
+```
+ssh -i your_private_key galaxy@IP_ADDRESS
+```
+
+ore use putty on Windows.
+
+2. Become super user:
+
+```
+sudo su -
+```
+
+3. Download this repository with the command:
+
+```
+git clone https://github.com/mtangaro/ansible-role-laniakea-cert-fix.git
+```
+
+4. Run the fix with the following command:
+
+```
+ansible-playbook ansible-role-laniakea-cert-fix/playbook.yml -e "admin_email=YOUR_EMAIL"
+```
+
+The script will configure the machine for you, with the followin output:
+
+
 
 
 
