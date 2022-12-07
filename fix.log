@@ -1,0 +1,83 @@
+[root@vnode-0 ~]# ansible-playbook ansible-role-laniakea-cert-fix/playbook.yml -e "admin_email=ma.tangaro@gmail.com"
+/usr/lib/python2.7/site-packages/ansible/parsing/vault/__init__.py:79: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support for it is now deprecated in cryptography, and will be removed in the next release.
+  from cryptography.hazmat.primitives.hashes import SHA256 as c_SHA256
+ [WARNING]: Host file not found: /etc/ansible/hosts
+ [WARNING]: provided hosts list is empty, only localhost is available
+
+PLAY [localhost] ***************************************************************
+
+TASK [ansible-role-laniakea-cert-fix : debug] **********************************
+ok: [localhost] => {
+    "msg": "ma.tangaro@gmail.com"
+}
+
+TASK [ansible-role-laniakea-cert-fix : Copy build_dns_record script] ***********
+ok: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Build dns record] ***********************
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : debug] **********************************
+ok: [localhost] => {
+    "msg": "cloud-212-189-205-135.cloud.ba.infn.it"
+}
+
+TASK [ansible-role-laniakea-cert-fix : [EL] Install Python3 for certbot] *******
+ok: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Install certbot] ************************
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Create certificate] *********************
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Setup cronjob for renewal] **************
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Stop NGINX server for updateing it] *****
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Backup nginx configuration dir] *********
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : [EL] Remove  NGINX Galaxy repository] ***
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : [EL] Uninstall NGINX] *******************
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : [EL] Add NGINX official repository] *****
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : [EL] Install nginx 1.20.1] **************
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : [EL] Retrieve the upload module] ********
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : [EL] Install the upload module] *********
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Include NGINX specific variables.] ******
+ok: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Copy the NGINX configuration file] ******
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Copy the NGINX configuration file] ******
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Check if nginx default configuration exists] ***
+ok: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Backup nginx default configuration] *****
+changed: [localhost]
+
+TASK [ansible-role-laniakea-cert-fix : Remove 80 port configuration, freeing it for certbot] ***
+changed: [localhost]
+
+RUNNING HANDLER [ansible-role-laniakea-cert-fix : restart nginx] ***************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=23   changed=17   unreachable=0    failed=0  
