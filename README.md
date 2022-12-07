@@ -74,8 +74,7 @@ git clone https://github.com/mtangaro/ansible-role-laniakea-cert-fix.git
 ansible-playbook ansible-role-laniakea-cert-fix/playbook.yml -e "admin_email=YOUR_EMAIL"
 ```
 
-The script will configure the machine for you, with the followin output:
-
+The script will configure the machine for you. An example of output is available [here](https://github.com/mtangaro/ansible-role-laniakea-cert-fix/blob/main/fix.log).
 
 
 
