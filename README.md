@@ -51,9 +51,23 @@ If you used the Laniakea Dashborad to create the SSH key for your Galaxy instanc
 
 2. Open the ``SSH keys section``
 
+![ssh_fig1](https://github.com/mtangaro/ansible-role-laniakea-cert-fix/blob/main/ssh_fig1.png)
+
 3. Retrieve the **SSH private key**
 
 ![ssh_fig2](https://github.com/mtangaro/ansible-role-laniakea-cert-fix/blob/main/ssh_fig2.png)
+
+4. Save the **SSH private key** with proper permissions.
+
+![ssh_fig3](https://github.com/mtangaro/ansible-role-laniakea-cert-fix/blob/main/ssh_fig3.png)
+
+For example on Linux and MacOS create a file with our favourite text editor and save it. Then give it the right permissions with the command:
+
+``chmod 400 your_private_key``
+
+On windows SSH connections can be managed using [Putty](https://www.ssh.com/academy/ssh/putty/windows)
+
+For further information on how to manage SSH keys and how to use them please refer to [Laniakea documentation](https://laniakea.readthedocs.io/en/latest/user_documentation/ssh_keys/ssh_keys.html).
 
 Run the fix
 -----------
